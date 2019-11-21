@@ -5,7 +5,6 @@
   "main": "dist/main.js",
   "author": "Trojaner",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "build:dev": "webpack",
     "watch": "webpack --watch",

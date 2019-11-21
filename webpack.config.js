@@ -15,6 +15,7 @@ module.exports = function(env, argv) {
 
         target: 'node',
         externals: [node_externals()],
+      devtool: 'source-map',
         output: {
             filename: '[name].js',
             path: path.resolve(__dirname, 'dist')

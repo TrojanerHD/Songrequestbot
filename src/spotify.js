@@ -3,10 +3,6 @@ import AccessToken from './accesstoken'
 import * as RefreshToken from './refreshtoken'
 
 export default function initialize (accessToken) {
-// request... request... request... oh! Token expired! data print
-  /*
-  request.get(somerequest).then(body => {console.log(body)}).err(err => { if(token expired) { await TokenStore.refreshAccessToken() } })
-   */
   const options = {
     method: 'GET',
     url: 'https://api.spotify.com/v1/me/player/currently-playing',

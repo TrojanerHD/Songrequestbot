@@ -3,7 +3,7 @@ import * as RefreshToken from './refreshtoken'
 import Server from './server'
 import spotify from './spotify'
 
-const secrets = './secrets.json'
+import * as secrets from '../secrets.json'
 
 export default class AccessToken {
   constructor () {
@@ -28,7 +28,7 @@ export default class AccessToken {
 
     function onTokenReceived (body) {
       if (cache) cache.executeRequest(body.access_token)
-      spotify(body.access_token)
+      else spotify(body.access_token)
     }
   }
 }

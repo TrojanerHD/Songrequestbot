@@ -1,3 +1,3 @@
-import AccessToken from './accesstoken'
+import Spotify from './spotify'
 
-new AccessToken()
+Spotify(null)
