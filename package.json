@@ -2,13 +2,29 @@
   "name": "songrequestbot",
   "version": "0.0.1",
   "description": "A songrequestbot for Twitch providing YouTube and Spotify",
-  "main": "server.mjs",
+  "main": "dist/main.js",
   "author": "Trojaner",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "build:dev": "webpack",
+    "watch": "webpack --watch",
+    "start": "node dist/main.js",
+    "run:dev": "webpack && node dist/main.js"
+  },
   "dependencies": {
+    "@babel/runtime": "^7.7.2",
     "express": "^4.17.1",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-node-externals": "^1.7.2"
   }
 }

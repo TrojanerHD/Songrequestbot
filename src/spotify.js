@@ -1,6 +1,6 @@
-import Cache from './cache.mjs'
-import AccessToken from './accesstoken.mjs'
-import * as RefreshToken from './refreshtoken.mjs'
+import Cache from './cache'
+import AccessToken from './accesstoken'
+import * as RefreshToken from './refreshtoken'
 
 export default function initialize (accessToken) {
 // request... request... request... oh! Token expired! data print

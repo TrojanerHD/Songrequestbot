@@ -1,7 +1,7 @@
 import request from 'request-promise'
-import * as RefreshToken from './refreshtoken.mjs'
-import Server from './server.mjs'
-import spotify from './spotify.mjs'
+import * as RefreshToken from './refreshtoken'
+import Server from './server'
+import spotify from './spotify'
 
 const secrets = './secrets.json'
 

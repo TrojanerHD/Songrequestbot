@@ -1,0 +1,5 @@
+/idea/
+/node_modules
+/secrets.json
+/yarn.lock
+/dist/
