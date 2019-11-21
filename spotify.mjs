@@ -24,8 +24,8 @@ export default function initialize (accessToken) {
   }
 
   function currentlyPlayingError (error) {
-    const realError = 'error' in error && 'error' in error['error'] ? error['error']['error'] : undefined
-    if (realError !== undefined && realError['status'] === 401 && (realError['message'] === 'Invalid access token' || realError['message'] === 'The access token expired')) AccessToken.requestToken(RefreshToken.getToken(), cache)
+    const realError = 'error' in error && 'error' in error.error ? error.error.error : undefined
+    if (realError !== undefined && realError.status === 401 && (realError.message === 'Invalid access token' || realError.message === 'The access token expired')) AccessToken.requestToken(RefreshToken.getToken(), cache)
     else console.error(error)
   }
 }
