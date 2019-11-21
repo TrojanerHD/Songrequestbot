@@ -1,0 +1,14 @@
+{
+  "name": "songrequestbot",
+  "version": "0.0.1",
+  "description": "A songrequestbot for Twitch providing YouTube and Spotify",
+  "main": "server.mjs",
+  "author": "Trojaner",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}
