@@ -1,7 +1,7 @@
 import request from 'request-promise'
 import express from 'express'
 import querystring from 'querystring'
-import * as secrets from './secrets.json'
+import * as secrets from '../secrets.json'
 import EventEmitter from 'events'
 
 export default class Server extends EventEmitter {
