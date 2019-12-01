@@ -9,9 +9,7 @@ export default class AccessToken {
   constructor () {
     const refreshToken = RefreshToken.getToken()
     if (refreshToken !== null) AccessToken.requestToken(refreshToken)
-    else {
-      server.startServer()
-    }
+    else server.startServer()
   }
 
   static requestToken (refreshToken, cache) {

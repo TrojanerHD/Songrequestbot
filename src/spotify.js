@@ -1,28 +1,45 @@
 import Cache from './cache'
 import AccessToken from './accesstoken'
 import * as RefreshToken from './refreshtoken'
+import { getSpotifyClass, setSpotifyClass, update } from './executor'
 
-export default function initialize (accessToken) {
-  const options = {
-    method: 'GET',
-    url: 'https://api.spotify.com/v1/me/player/currently-playing',
-    headers: {
-      Authorization: `Bearer ${accessToken}`
-    },
-    json: true
+export default class initialize {
+  constructor (accessToken) {
+    this._accessToken = accessToken
+    const options = {
+      method: 'GET',
+      url: 'https://api.spotify.com/v1/me/player/currently-playing',
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      },
+      json: true
+    }
+
+    const cache = new Cache()
+    cache.addRequest(options, currentlyPlaying, currentlyPlayingError)
+
+    function currentlyPlaying (body) {
+      console.log(body)
+      if (body === undefined || body['item'] === undefined || body['item'] === null) return
+      getSpotifyClass().updateTrigger()
+    }
+
+    function currentlyPlayingError (error) {
+      const realError = 'error' in error && 'error' in error.error ? error.error.error : undefined
+      if (realError !== undefined && realError.status === 401 && (realError.message === 'Invalid access token' || realError.message === 'The access token expired')) AccessToken.requestToken(RefreshToken.getToken(), cache)
+      else {
+        console.error(error)
+        getSpotifyClass().updateTrigger()
+      }
+    }
   }
 
-  const cache = new Cache()
-  cache.addRequest(options, currentlyPlaying, currentlyPlayingError)
+  updateTrigger () {
+    update('spotify', updateSpotify)
 
-  function currentlyPlaying (body) {
-    console.log(body)
-  }
-
-  function currentlyPlayingError (error) {
-    const realError = 'error' in error && 'error' in error.error ? error.error.error : undefined
-    if (realError !== undefined && realError.status === 401 && (realError.message === 'Invalid access token' || realError.message === 'The access token expired')) AccessToken.requestToken(RefreshToken.getToken(), cache)
-    else console.error(error)
+    function updateSpotify () {
+      setSpotifyClass(new initialize(this._accessToken ? this._accessToken : undefined))
+    }
   }
 }
 

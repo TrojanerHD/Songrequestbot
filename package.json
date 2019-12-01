@@ -14,8 +14,10 @@
   "dependencies": {
     "@babel/runtime": "^7.7.2",
     "express": "^4.17.1",
+    "lodash": "latest",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "tmi.js": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.7.2",

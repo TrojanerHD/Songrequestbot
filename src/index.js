@@ -1,3 +1,3 @@
-import Spotify from './spotify'
+import Executor from './executor'
 
-Spotify(null)
+Executor()

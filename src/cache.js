@@ -1,4 +1,5 @@
 import * as request from 'request-promise'
+import { getSpotifyClass } from './executor'
 
 export default class Cache {
   constructor () {
@@ -12,6 +13,8 @@ export default class Cache {
 
   executeRequest (accessToken) {
     this._request.options.headers.Authorization = `Bearer ${accessToken}`
+    getSpotifyClass()._accessToken = accessToken
+
     const { options, handler, error } = this._request
 
     request(options).then(handler).catch(error)
