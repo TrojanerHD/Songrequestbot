@@ -3,3 +3,5 @@
 /secrets.json
 /yarn.lock
 /dist/
+/refresh_token.txt
+/yarn-error.log
