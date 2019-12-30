@@ -1,11 +1,10 @@
 import request from 'request-promise';
-import * as RefreshToken from './refreshtoken';
-import Server from './server';
-import Spotify from './spotify';
-import Cache from './cache';
+import * as RefreshToken from './RefreshToken';
+import Spotify from './Spotify';
+import Cache from './Cache';
 
 import * as secrets from '../secrets.json';
-import Executor from './executor';
+import Executor from './Executor';
 
 export default class AccessToken {
   _refreshTokenExists: boolean = false;
@@ -18,10 +17,8 @@ export default class AccessToken {
     const refreshToken: string | null = RefreshToken.getToken();
     if (refreshToken !== null) this.requestToken(refreshToken);
     else {
-      const server: Server = new Server();
-
-      server.on('gotapikey', this.gotApiKey.bind(this));
-      server.startServer();
+      executor._server.on('gotapikey', this.gotApiKey.bind(this));
+      executor._server.accessToken();
       return;
     }
     this._refreshTokenExists = true;

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="css/index.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="css/libraries/fontawesome/css/all.min.css" rel="stylesheet"/>
+    <script src="js/index.js"></script>
+</head>
+<body>
+<div class="darken-background">
+    <div class="settings-dialog">
+        <div>Twitch Username:</div>
+        <div><label for="twitch-username"></label><input id="twitch-username" type="text"/></div>
+        <div>Aliases for <label for="commands-aliases"></label>
+            <select id="commands-aliases">
+                <option>songrequest</option>
+                <option>skip</option>
+            </select> (Comma separated):
+        </div>
+        <div><label for="aliases"></label><input id="aliases"/></div>
+        <div>Disabled Services (Comma separated):</div>
+        <div><label for="disabled-services"><input id="disabled-services" type="text"/></label></div>
+        <div>Viewers required to skip a song (integer/%):</div>
+        <div><label for="viewers-required-song-skip"></label><input id="viewers-required-song-skip" type="text"/></div>
+        <div>Max. length of a song (minutes, empty = unlimited length):</div>
+        <div><label for="maximum-length"></label><input id="maximum-length" type="text"/></div>
+        <div>Max. number of requests/user (empty = unlimited requests):</div>
+        <div><label for="maximum-requests"></label><input id="maximum-requests" type="text"/></div>
+        <div>Mod roles from discord (ids, comma separated):</div>
+        <div><label for="mod-roles"></label><input id="mod-roles" type="text"/></div>
+        <div>Prefix for commands:</div>
+        <div><label for="prefix"></label><input id="prefix" pattern=".{1,3}" type="text"/></div>
+        <div></div>
+        <div>
+            <button class="btn" id="done">Done</button>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="item">
+        <div class="settings-item">
+            <div class="settings">
+                <div class="item">
+                    <button class="btn" id="settings">Settings</button>
+                </div>
+                <div class="item">
+                    <button class="btn" id="secrets">Secrets</button>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="header">Request Song</div>
+            Query: <label for="song-request"></label><input id="song-request" type="text"/>
+        </div>
+    </div>
+    <div class="item">
+        <div class="songrequests">
+            <div>#</div>
+            <div>Title</div>
+            <div>Artists</div>
+            <div>Duration</div>
+            <div>Requester</div>
+            <div>Origin</div>
+            <div>Moderation</div>
+        </div>
+    </div>
+    <div class="item">
+        <div class="bots">
+            <div>
+                <div class="header">Twitch Bot</div>
+                Send Message: <label for="message"></label><input id="message" type="text"/><br/>
+            </div>
+            <div>
+                <div class="header">Discord Bot</div>
+                <button class="discord-bot-join btn">Join</button>
+                <button class="discord-bot-leave btn">Leave</button>
+            </div>
+            <div>
+                <div class="header">Spotify</div>
+                <button class="btn" id="connect-spotify">Connect</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

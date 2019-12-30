@@ -1,12 +1,12 @@
-import Cache from './cache';
-import AccessToken from './accesstoken';
-import Executor, {Service} from './executor';
+import Cache from './Cache';
+import AccessToken from './AccessToken';
+import Executor from './Executor';
 
 type Song = {
   item: {}
 }
 
-export default class initialize {
+export default class Spotify {
   _accessToken: string | undefined;
   private readonly _executor: Executor;
   private readonly _cache: Cache;
@@ -17,25 +17,20 @@ export default class initialize {
         this._cache);
     if (!checkForAccessToken._refreshTokenExists) return;
     this._accessToken = accessToken;
+    this._cache = new Cache(this._executor);
+  }
+
+  getCurrentlyPlaying(response: (body) => void) {
     const options: any = {
       method: 'GET',
       url: 'https://api.spotify.com/v1/me/player/currently-playing',
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${this._accessToken}`,
       },
       json: true,
     };
-
-    this._cache = new Cache(this._executor);
-    this._cache.addRequest(options, this.currentlyPlaying.bind(this),
+    this._cache.addRequest(options, response,
         this.currentlyPlayingError.bind(this));
-  }
-
-  currentlyPlaying(body: Song): void {
-    console.log(body);
-    if (body === undefined || body.item === undefined || body.item ===
-        null) return;
-    this._executor._spotify.updateTrigger(this._executor);
   }
 
   currentlyPlayingError(error): void {
@@ -46,19 +41,7 @@ export default class initialize {
         (realError.message === 'Invalid access token' || realError.message ===
             'The access token expired')) {
       new AccessToken(this._executor, this._cache);
-    } else {
-      console.error(error);
-      this._executor._spotify.updateTrigger(this._executor);
-    }
-  }
-
-  updateTrigger(executor: Executor): void {
-    executor.update(Service.Spotify, this.updateSpotify.bind(this));
-  }
-
-  updateSpotify(): void {
-    this._executor._spotify = new initialize(this._executor,
-        this._accessToken ? this._accessToken : undefined);
+    } else console.error(error);
   }
 }
 

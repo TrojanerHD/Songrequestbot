@@ -1,0 +1,195 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+}
+
+
+body {
+    background-color: #282828;
+    color: white;
+}
+
+div.container {
+    grid-template-columns: 22% auto 22%;
+    grid-template-rows: auto;
+    display: grid;
+    height: calc(100vh - 16px);
+}
+
+div.container > div:not(:last-child) {
+    border-right: 2px #818181 solid;
+}
+
+div.container > div {
+    padding: 0 5px 0 5px;
+}
+
+div.item > div:not(:last-child) {
+    border-bottom: 2px #818181 solid;
+}
+
+div.settings {
+    grid-template-columns: 100%;
+    grid-template-rows: 60px auto;
+    display: grid;
+}
+
+div.settings-item {
+    padding-bottom: 10px;
+}
+
+button.btn {
+    background: #2196F3;
+    padding: 7.5pt 11.25pt;
+    border-radius: 2.25pt;
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+    text-transform: uppercase;
+    font-size: 11pt;
+    font-family: 'Roboto', serif;
+    font-weight: 500;
+    color: white;
+    -webkit-box-shadow: 0 1.125pt 3pt 0.75pt rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 1.125pt 3pt 0.75pt rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1.125pt 3pt 0.75pt rgba(0, 0, 0, 0.25);
+}
+
+button.btn:hover {
+    background: rgb(21, 143, 243);
+}
+
+button.btn:active {
+    -webkit-box-shadow: 0 2.25pt 6pt 0.75pt rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 2.25pt 6pt 0.75pt rgba(0, 0, 0, 0.5);
+    box-shadow: 0 2.25pt 6pt 0.75pt rgba(0, 0, 0, 0.5);
+}
+
+button.btn-disabled {
+    background: rgba(0, 0, 0, .1);
+    padding: 7.5pt 11.25pt;
+    border-radius: 2.25pt;
+    cursor: not-allowed;
+    border: none;
+    outline: none;
+
+    text-transform: uppercase;
+    font-size: 11pt;
+    font-family: Roboto, serif;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .4);
+}
+
+::-moz-focus-inner {
+    border: none;
+}
+
+.settings-item {
+    text-align: center;
+}
+
+table.settings > tr > td > * {
+    width: 100%;
+}
+
+div.message {
+    position: absolute;
+    top: 15px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 7px;
+    -webkit-animation: fadein 600ms; /* Safari 4.0 - 8.0 */
+    animation: fadein 600ms;
+}
+
+div.error-message {
+    background-color: darkred;
+}
+
+div.info-message {
+    background-color: green;
+}
+
+@keyframes fadein {
+    from {
+        top: -39px;
+    }
+    to {
+        top: 15px;
+    }
+}
+
+div.songrequests {
+    grid-template-columns: min-content min-content min-content min-content min-content min-content min-content;
+    display: grid;
+}
+
+div.songrequests > div {
+    padding: 5px 15px 5px 15px;
+    white-space: nowrap;
+    border: 1px #818181 solid;
+}
+
+div.bots {
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+    grid-template-columns: 100%;
+    height: calc(100vh - 16px);
+}
+
+div.bots > div:not(:last-child) {
+    border-bottom: 2px #818181 solid;
+
+}
+
+div.header {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+input {
+    background-color: #282828;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    border-bottom: 2px #818181 solid;
+    color: white;
+}
+
+div.darken-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 16px);
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
+}
+
+div.settings-dialog {
+    position: absolute;
+    background-color: #282828;
+    padding: 20px 20px 20px 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: min-content min-content;
+}
+
+div.settings-dialog > div {
+    white-space: nowrap;
+}
+
+div.settings-dialog > div:nth-of-type(odd) {
+    text-align: right;
+    padding-right: 10px;
+}
+
+div.settings-dialog > div:not(:last-child) {
+    margin-bottom: 50px;
+}
+
+select {
+    background-color: #1b1b1b;
+    color: white;
+    border: none;
+}

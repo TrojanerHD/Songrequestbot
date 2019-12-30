@@ -5,3 +5,5 @@
 /dist/
 /refresh_token.txt
 /yarn-error.log
+/src/*.js
+/src/commands/*.js

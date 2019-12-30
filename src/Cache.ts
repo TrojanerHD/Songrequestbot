@@ -1,5 +1,5 @@
 import request from 'request-promise';
-import Executor from './executor';
+import Executor from './Executor';
 
 type options = { method: string, url: string, headers: { Authorization: string }, json: boolean };
 type handler = (body) => void;

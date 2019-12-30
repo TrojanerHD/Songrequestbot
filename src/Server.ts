@@ -4,24 +4,27 @@ import querystring from 'querystring';
 import * as secrets from '../secrets.json';
 import EventEmitter from 'events';
 import {IncomingMessage} from 'http';
+import WebSocketHandler from './WebSocketHandler';
+import Executor from './Executor';
 
 type res = {
   send: (message: string) => void,
-  cookie: (
-      name: string,
-      value: string) => void, redirect: (url: string) => void
+  cookie: (name: string, value: string) => void, redirect: (url: string) => void
 }
 
 export default class Server extends EventEmitter {
   private _app: Express;
 
-  constructor() {
+  constructor(executor: Executor) {
     super();
     this._app = express();
+    this._app.listen(8888);
+    console.log('Listening on web server 8888');
+    this._app.use(express.static('./src/html'));
+    new WebSocketHandler(executor);
   }
 
-  startServer() {
-    console.log('Listening on 8888');
+  accessToken() {
     const redirect_uri = 'http://localhost:8888/callback', // Your redirect uri
         scopes = 'user-read-currently-playing user-modify-playback-state playlist-read-private playlist-modify-private user-read-playback-state',
         client_id: string = secrets.spotify.id,
@@ -38,7 +41,7 @@ export default class Server extends EventEmitter {
 
     const stateKey = 'spotify_auth_state';
 
-    this._app.get('/', loginResponse);
+    this._app.get('/login', loginResponse);
 
     function loginResponse(
         req: IncomingMessage, res: res) {
@@ -83,8 +86,7 @@ export default class Server extends EventEmitter {
 
                       this.emit('gotapikey', refresh_token, access_token);
 
-                      res.send(
-                          'Success! You may now close this tab and you are able to use the Songrequestbot now.');
+                      res.redirect('/?authorized=true');
                     }).
                 catch((error: { error: string }) => {
                   if (error.error === 'invalid_grant') {
@@ -97,6 +99,5 @@ export default class Server extends EventEmitter {
                 });
           }
         });
-    this._app.listen(8888);
   }
 }

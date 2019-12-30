@@ -1,3 +1,3 @@
-import Executor from './executor';
+import Executor from './Executor';
 
 new Executor();
