@@ -1,3 +1,3 @@
-import Executor from './Executor';
+import { Executor } from './Executor';
 
-new Executor();
+new Executor().init();

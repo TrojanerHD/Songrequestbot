@@ -1,9 +1,6 @@
-/idea/
 /node_modules
 /secrets.json
 /yarn.lock
-/dist/
 /refresh_token.txt
 /yarn-error.log
-/src/*.js
-/src/commands/*.js
+/build/
